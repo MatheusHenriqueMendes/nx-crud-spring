@@ -23,27 +23,27 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/characters")
 @AllArgsConstructor
 public class CharacterController {
-  private final CharacterRepository estabelecimentoRepository;
+  private final CharacterRepository characterRepository;
 
   @GetMapping
   public List<Character> listar() {
-    return estabelecimentoRepository.findAll();
+    return characterRepository.findAll();
   }
 
   @PostMapping
-  public ResponseEntity<CharacterDTO> criar(@RequestBody CharacterDTO estabelecimentoDTO) {
-    Character estabelecimento = estabelecimentoDTO.toEntity();
-    estabelecimentoRepository.save(estabelecimento);
-    return new ResponseEntity<>(estabelecimento.toDTO(), HttpStatus.CREATED);
+  public ResponseEntity<CharacterDTO> criar(@RequestBody CharacterDTO characterDTO) {
+    Character character = characterDTO.toEntity();
+    characterRepository.save(character);
+    return new ResponseEntity<>(character.toDTO(), HttpStatus.CREATED);
   }
 
   @DeleteMapping(path = { "/{id}" })
   public ResponseEntity<Long> excluir(@PathVariable long id) {
-    Optional<Character> estabelecimento = estabelecimentoRepository.findById(id);
-    if (estabelecimento.isEmpty()) {
+    Optional<Character> character = characterRepository.findById(id);
+    if (character.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    estabelecimentoRepository.deleteById(id);
+    characterRepository.deleteById(id);
     return new ResponseEntity<>(id, HttpStatus.OK);
   }
 }
