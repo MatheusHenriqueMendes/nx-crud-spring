@@ -27,5 +27,4 @@ public class Character {
         dto.setNome(nome);
         return dto;
     }
-
 }
