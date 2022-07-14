@@ -41,9 +41,4 @@ public class Empresa {
         dto.setColaboradores(new Colaborador().toListDTO(colaboradores));
         return dto;
     }
-
-
-
-
-
 }
